@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Equipes - Início</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f7f6; 
+            padding: 50px; 
+            text-align: center; 
+        }
+        .menu-container { 
+            background-color: white; 
+            padding: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            display: inline-block; 
+        }
+        h1 { 
+            color: #333; 
+            margin-bottom: 30px; 
+        }
+        
+        /* Estilo base para todos os botões */
+        .btn { 
+            display: block; 
+            width: 250px; 
+            padding: 15px; 
+            margin: 10px auto; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            font-size: 16px; 
+            font-weight: bold; 
+        }
+        
+        /* Cores específicas de cada botão */
+        .btn-azul { background-color: #0056b3; }
+        .btn-azul:hover { background-color: #004494; }
+        
+        .btn-verde { background-color: #28a745; }
+        .btn-verde:hover { background-color: #218838; }
+        
+        .btn-laranja { background-color: #ff8c00; }
+        .btn-laranja:hover { background-color: #e07b00; }
+
+        .btn-roxo { background-color: #6f42c1; }
+        .btn-roxo:hover { background-color: #59339d; }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <h1>Painel do Sistema</h1>
+        <p style="color: #666; margin-bottom: 20px;">Selecione o módulo que deseja acessar:</p>
+        
+        <!-- Links para as páginas de cadastro -->
+        <a href="cadastro_usuario.html" class="btn btn-azul">Cadastrar Usuário</a>
+        <a href="cadastro_equipe.html" class="btn btn-verde">Cadastrar Equipe</a>
+        <a href="cadastro_pessoa.html" class="btn btn-laranja">Cadastrar Pessoa</a>
+        <a href="cadastro_membro.html" class="btn btn-roxo">Vincular Membro à Equipe</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário - Sistema de Equipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .formulario-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            color: #333333;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #555555;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            padding: 12px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="formulario-container">
+        <h2>Novo Usuário</h2>
+        
+        <!-- O formulário vai enviar os dados para o arquivo PHP no futuro -->
+        <form action="salvar_usuario.php" method="POST">
+            
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo">
+
+            <label for="login">Login de Acesso:</label>
+            <input type="text" id="login" name="login" required placeholder="Ex: joao.silva">
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required placeholder="Crie uma senha forte">
+
+            <input type="submit" value="Cadastrar Usuário">
+        </form>
+    </div>
+
+</body>
+</html>

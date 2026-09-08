@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Pessoa - Sistema</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
+        .formulario-container { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: #333; text-align: center; }
+        label { font-weight: bold; display: block; margin-top: 15px; color: #555; }
+        input[type="text"], input[type="date"], select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        input[type="submit"] { width: 100%; background-color: #ff8c00; color: white; padding: 12px; margin-top: 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        input[type="submit"]:hover { background-color: #e07b00; }
+    </style>
+</head>
+<body>
+
+    <div class="formulario-container">
+        <h2>Cadastrar Pessoa</h2>
+        
+        <form action="salvar_pessoa.php" method="POST">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="cpf">CPF (somente números):</label>
+            <input type="text" id="cpf" name="cpf" maxlength="14" required>
+
+            <label for="nascimento">Data de Nascimento:</label>
+            <input type="date" id="nascimento" name="nascimento" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" required>
+
+            <label for="tipo">Papel no Sistema:</label>
+            <select id="tipo" name="pessoa_tipo_id">
+                <option value="1">Scrum Master / Gerente</option>
+                <option value="2">Membro da Equipe / Desenvolvedor</option>
+            </select>
+
+            <input type="submit" value="Salvar Cadastro">
+        </form>
+    </div>
+
+</body>
+</html>
