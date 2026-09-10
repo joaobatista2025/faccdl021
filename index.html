@@ -2,65 +2,89 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Equipes - Início</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Organização de Equipes - Início</title>
+    <link rel="stylesheet" href="estilo.css">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #f4f7f6; 
-            padding: 50px; 
-            text-align: center; 
+        .menu-wrapper {
+            max-width: 680px;
+            margin: 40px auto;
+            text-align: center;
         }
-        .menu-container { 
-            background-color: white; 
-            padding: 40px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-            display: inline-block; 
+        .grid-botoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
         }
-        h1 { 
-            color: #333; 
-            margin-bottom: 30px; 
+        .secao-titulo {
+            font-size: 15px;
+            font-weight: bold;
+            color: #334e68;
+            text-align: left;
+            border-bottom: 2px solid #eaedf1;
+            padding-bottom: 5px;
+            margin: 20px 0 12px 0;
         }
-        
-        /* Estilo base para todos os botões */
-        .btn { 
-            display: block; 
-            width: 250px; 
-            padding: 15px; 
-            margin: 10px auto; 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 4px; 
-            font-size: 16px; 
-            font-weight: bold; 
-        }
-        
-        /* Cores específicas de cada botão */
-        .btn-azul { background-color: #0056b3; }
-        .btn-azul:hover { background-color: #004494; }
-        
-        .btn-verde { background-color: #28a745; }
-        .btn-verde:hover { background-color: #218838; }
-        
-        .btn-laranja { background-color: #ff8c00; }
-        .btn-laranja:hover { background-color: #e07b00; }
-
-        .btn-roxo { background-color: #6f42c1; }
-        .btn-roxo:hover { background-color: #59339d; }
     </style>
 </head>
 <body>
 
-    <div class="menu-container">
-        <h1>Painel do Sistema</h1>
-        <p style="color: #666; margin-bottom: 20px;">Selecione o módulo que deseja acessar:</p>
-        
-        <!-- Links para as páginas de cadastro -->
-        <a href="cadastro_usuario.html" class="btn btn-azul">Cadastrar Usuário</a>
-        <a href="cadastro_equipe.html" class="btn btn-verde">Cadastrar Equipe</a>
-        <a href="cadastro_pessoa.html" class="btn btn-laranja">Cadastrar Pessoa</a>
-        <a href="cadastro_membro.html" class="btn btn-roxo">Vincular Membro à Equipe</a>
-    </div>
+    <header class="topo-navbar">
+        <div class="navbar-container">
+            <a href="index.php" class="navbar-logo">
+                👥 <span>Equipes</span> Manager
+            </a>
+            <nav>
+                <ul class="navbar-menu">
+                    <li><a href="index.php">🏠 Painel Completo</a></li>
+                    <li><a href="listar_pessoas.php">👤 Pessoas</a></li>
+                    <li><a href="listar_equipes.php">💼 Equipes</a></li>
+                    <li><a href="listar_membros.php">🔗 Membros</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card menu-wrapper">
+            <h1 style="color: #1f2d3d; font-size: 24px; margin-bottom: 8px;">👥 Sistema de Organização de Equipes</h1>
+            <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Gerenciamento de equipes, tarefas, papéis e membros (Tema 021 - ADS)</p>
+            
+            <div style="margin-bottom: 20px;">
+                <a href="index.php" class="btn btn-azul" style="width: 100%; padding: 14px; font-size: 16px;">📊 Acessar Painel / Dashboard Principal</a>
+            </div>
+
+            <!-- Módulos de Cadastro -->
+            <div class="secao-titulo">📝 Módulos de Cadastro (Inserção de Dados)</div>
+            <div class="grid-botoes">
+                <a href="cadastro_pessoa.php" class="btn btn-laranja">👤 Cadastrar Pessoa</a>
+                <a href="cadastro_equipe.php" class="btn btn-verde">💼 Criar Nova Equipe</a>
+                <a href="cadastro_membro.php" class="btn btn-roxo">🔗 Vincular Membro</a>
+                <a href="cadastro_usuario.php" class="btn btn-azul">🔒 Novo Usuário</a>
+            </div>
+
+            <!-- Módulos de Listagem / Consulta -->
+            <div class="secao-titulo">📋 Módulos de Consulta e Gestão</div>
+            <div class="grid-botoes">
+                <a href="listar_pessoas.php" class="btn btn-laranja">👤 Ver Pessoas e Cargos</a>
+                <a href="listar_equipes.php" class="btn btn-verde">💼 Ver Equipes e Membros</a>
+                <a href="listar_membros.php" class="btn btn-roxo">🔗 Ver Vínculos de Equipes</a>
+                <a href="listar_tipos.php" class="btn btn-cinza">🏷️ Ver Papéis do Sistema</a>
+            </div>
+
+            <!-- Material de Apoio -->
+            <div class="secao-titulo">📖 Treino Front-End (Slides do Professor)</div>
+            <div>
+                <a href="treino.html" class="btn btn-cinza" style="width: 100%;">🎨 Abrir Página de Treino (Tags HTML5 & CSS)</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 - Sistema de Organização de Equipes | Programação Web (ADS)</p>
+        <p>Prof. Hiran Savir | Tecnologias: PHP, MySQL, HTML5 e CSS3</p>
+    </footer>
 
 </body>
 </html>

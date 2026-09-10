@@ -1,18 +1,31 @@
 <?php
-$host = "127.0.0.1";
-$usuario = "root";
-$senha = "123456";
-$banco = "sistema_equipes";
+/**
+ * ARQUIVO DE CONEXÃO COM O BANCO DE DADOS (conexao.php)
+ * Utiliza PDO (PHP Data Objects), o padrão moderno e seguro do PHP.
+ */
+
+// Configurações de Conexão (Local / XAMPP / MySQL Workbench)
+$host    = "127.0.0.1";        // Endereço do servidor MySQL
+$banco   = "sistema_equipes";  // Nome do banco de dados
+$usuario = "root";             // Usuário do banco
+$senha   = "123456";           // Senha do banco (se estiver na Locaweb, altere aqui)
 
 try {
-    // Cria a conexão usando PDO
-    $pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8", $usuario, $senha);
+    // 1. Cria o objeto PDO para conectar ao MySQL
+    $pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8mb4", $usuario, $senha);
     
-    // Configura o PDO para mostrar erros na tela, caso algo dê errado
+    // 2. Configura o PDO para lançar exceções caso ocorra algum erro de SQL
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    echo "Conexão com o banco de dados realizada com sucesso!";
+    // 3. Configura para retornar resultados como arrays associativos por padrão
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
 } catch (PDOException $erro) {
-    echo "Erro de conexão: " . $erro->getMessage();
+    // Se a conexão falhar, exibe uma mensagem amigável e interrompe
+    die("<div style='color:red; font-family:Arial; padding:20px;'>
+            <h3>Erro ao conectar com o banco de dados!</h3>
+            <p><strong>Detalhe do erro:</strong> " . $erro->getMessage() . "</p>
+            <p>Verifique se o MySQL está rodando e se os dados em <code>conexao.php</code> estão corretos.</p>
+         </div>");
 }
 ?>

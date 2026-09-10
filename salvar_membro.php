@@ -1,22 +1,66 @@
 <?php
-// 1. Recebe os IDs digitados
-$membro_id = $_POST['membro_id'];
-$equipe_id = $_POST['equipe_id'];
+/**
+ * ==========================================================
+ * PROCESSA O VÍNCULO DE MEMBRO (salvar_membro.php)
+ * ==========================================================
+ */
 
-$atualizado_por = 1; // Administrador padrão
+require_once 'conexao.php';
+require_once 'header.php';
 
-try {
-    // 2. Conecta no Banco de Dados
-    $pdo = new PDO("mysql:host=127.0.0.1;dbname=sistema_equipes", "root", "123456");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $equipe_id = (int)$_POST['equipe_id'];
+    $membro_id = (int)$_POST['membro_id'];
+    $atualizado_por = 1;
 
-    // 3. Prepara e salva o vínculo
-    $sql = $pdo->prepare("INSERT INTO tbMembros (equipe_id, membro_id, atualizado_por) VALUES (?, ?, ?)");
-    $sql->execute([$equipe_id, $membro_id, $atualizado_por]);
+    try {
+        // 1. Valida se esse membro já está vinculado a essa equipe
+        $check = $pdo->prepare("SELECT COUNT(*) FROM tbMembros WHERE equipe_id = ? AND membro_id = ?");
+        $check->execute([$equipe_id, $membro_id]);
+        $jaExiste = $check->fetchColumn();
 
-    echo "<h3>Vínculo criado com sucesso! A pessoa agora faz parte da equipe.</h3>";
+        if ($jaExiste > 0) {
+            echo "<div class='card formulario-box'>
+                    <div class='alerta alerta-erro'>
+                        <h3>⚠️ Vínculo Já Existe!</h3>
+                        <p>Esta pessoa já faz parte desta equipe.</p>
+                    </div>
+                    <div style='display:flex; gap:10px;'>
+                        <a href='cadastro_membro.php' class='btn btn-roxo'>Tentar Outro Vínculo</a>
+                        <a href='listar_membros.php' class='btn btn-cinza'>Ver Lista de Membros</a>
+                    </div>
+                  </div>";
+        } else {
+            // 2. Insere o vínculo na tabela tbMembros
+            $sql = $pdo->prepare("INSERT INTO tbMembros (equipe_id, membro_id, atualizado_por) VALUES (?, ?, ?)");
+            $sql->execute([$equipe_id, $membro_id, $atualizado_por]);
 
-} catch (PDOException $erro) {
-    echo "Erro ao vincular: " . $erro->getMessage();
+            echo "<div class='card formulario-box'>
+                    <div class='alerta alerta-sucesso'>
+                        <h3>✅ Vínculo Realizado com Sucesso!</h3>
+                        <p>A pessoa foi adicionada à equipe selecionada.</p>
+                    </div>
+                    <div style='display:flex; gap:10px;'>
+                        <a href='cadastro_membro.php' class='btn btn-roxo'>+ Vincular Outro</a>
+                        <a href='listar_membros.php' class='btn btn-cinza'>Ver Lista</a>
+                        <a href='index.php' class='btn btn-cinza'>Início</a>
+                    </div>
+                  </div>";
+        }
+
+    } catch (PDOException $erro) {
+        echo "<div class='card formulario-box'>
+                <div class='alerta alerta-erro'>
+                    <h3>❌ Erro ao vincular membro:</h3>
+                    <p>" . $erro->getMessage() . "</p>
+                </div>
+                <a href='cadastro_membro.php' class='btn btn-cinza'>Tentar Novamente</a>
+              </div>";
+    }
+} else {
+    header('Location: listar_membros.php');
+    exit;
 }
+
+require_once 'footer.php';
 ?>
